@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="JWT" Version="10.1.1" />
+	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookService.Domain\BookService.Domain.csproj" />
+    <ProjectReference Include="..\BookService.Persistance\BookService.Persistance.csproj" />
+  </ItemGroup>
+
+</Project>
