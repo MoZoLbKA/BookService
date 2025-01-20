@@ -1,4 +1,4 @@
-﻿using BookService.Domain.Entiies.Users.Enums;
+﻿using BookService.Domain.Entities.Users.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

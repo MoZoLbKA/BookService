@@ -1,5 +1,5 @@
-using BookService.Domain.Entiies.Books;
-using BookService.Domain.Entiies.Users.Entity;
+using BookService.Domain.Entities.Books;
+using BookService.Domain.Entities.Users.Entity;
 using BookService.Domain.Entities.Authors;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;

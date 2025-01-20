@@ -27,7 +27,7 @@ namespace BookService.Infrastructure.Persistence.Repositories.Custom
                 .ToListAsync();
 
         public async Task<AuthorEntity?> FindByNameAsync(string name)
-            => await FirstOrDefaultAsync(a => a.Name == name);
+            => await FirstOrDefaultAsync(a => a.Name.ToLower() == name.ToLower());
 
         public async Task<List<AuthorEntity>> GetListAsync()
             => await GetSet().ToListAsync(); // Реализация для получения всех авторов

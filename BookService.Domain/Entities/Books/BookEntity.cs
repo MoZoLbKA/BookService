@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookService.Domain.Entiies.Books
+namespace BookService.Domain.Entities.Books
 {
     /// <summary>
     /// Книга

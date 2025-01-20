@@ -10,9 +10,9 @@ using System;
 using BookService.JwtAuth;
 using System.Linq;
 using BookService.WebApi.Infrastructure.Extensions;
-using BookService.Domain.Entiies.Users.DTOs;
-using BookService.Domain.Entiies.Users.Entity;
-using BookService.Domain.Entiies.Users.Enums;
+using BookService.Domain.Entities.Users.DTOs;
+using BookService.Domain.Entities.Users.Entity;
+using BookService.Domain.Entities.Users.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookService.WebApi.Controllers.Auth;
@@ -187,7 +187,7 @@ public class UserController : Controller
         UserEntity user = new UserEntity()
         {
             Login = "admin@admin.ru",
-            PasswordHash = HashingExtensions.ComputeHash("admin@admin.ru", "admin"),
+            PasswordHash = HashingExtensions.ComputeHash("admin@admin.ru", "adminadmin"),
             FirstName = "Тест",
             SecondName = "Тестов",
             ThirdName = "Тестович",

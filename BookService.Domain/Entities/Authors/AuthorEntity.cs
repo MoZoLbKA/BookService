@@ -1,4 +1,4 @@
-﻿using BookService.Domain.Entiies.Books;
+﻿using BookService.Domain.Entities.Books;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

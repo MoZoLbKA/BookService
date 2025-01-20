@@ -1,4 +1,4 @@
-﻿using BookService.Domain.Entiies.Books;
+﻿using BookService.Domain.Entities.Books;
 using BookService.Infrastructure.Persistence.Repositories.Default;
 using BookService.Infrastructure.Persistence.UnitOfWorks.Default;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +24,7 @@ namespace BookService.Infrastructure.Persistence.Repositories.Custom
             => await GetSet().Where(b => b.AuthorId == authorId).ToListAsync();
 
         public async Task<BookEntity?> FindByTitleAsync(string title)
-            => await FirstOrDefaultAsync(b => b.Title == title);
+            => await FirstOrDefaultAsync(b => b.Title.ToLower() == title.ToLower());
 
         public async Task<List<BookEntity>> GetListAsync()
             => await GetSet().ToListAsync(); // Реализация метода для получения всех книг

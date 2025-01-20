@@ -1,5 +1,5 @@
-﻿using BookService.Domain.Entiies.Users.DTOs;
-using BookService.Domain.Entiies.Users.Entity;
+﻿using BookService.Domain.Entities.Users.DTOs;
+using BookService.Domain.Entities.Users.Entity;
 using BookService.Infrastructure.Persistence.Contexts;
 using BookService.Infrastructure.Persistence.Repositories.Custom;
 using BookService.Infrastructure.Persistence.UnitOfWorks.Default;

@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Linq;
 using System;
-using BookService.Domain.Entiies.Users.DTOs;
+using BookService.Domain.Entities.Users.DTOs;
 using BookService.WebApi.Infrastructure.Extensions;
 
-namespace BookService.Domain.Entiies.Users.Entity;
+namespace BookService.Domain.Entities.Users.Entity;
 /// <summary>
 /// Пользователь
 /// </summary>

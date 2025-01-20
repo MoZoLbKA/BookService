@@ -1,11 +1,11 @@
-﻿using BookService.Domain.Entiies.Books;
+﻿using BookService.Domain.Entities.Books;
 using BookService.Infrastructure.Persistence.UnitOfWorks.Custom;  // Для использования IBookUnitOfWork
 using BookService.Persistance.UnitOfWorks.Custom;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BookService.API.Controllers
+namespace BookService.WebApi.Controllers.Book
 {
     [ApiController]
     [Route("api/books")]

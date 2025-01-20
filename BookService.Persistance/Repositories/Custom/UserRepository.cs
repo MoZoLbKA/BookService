@@ -6,9 +6,9 @@ using System;
 using BookService.Infrastructure.Persistence.Repositories.Default;
 using BookService.Infrastructure.Persistence.Contexts;
 using System.Linq;
-using BookService.Domain.Entiies.Users.Entity;
-using BookService.Domain.Entiies.Users.Enums;
-using BookService.Domain.Entiies.Users.DTOs;
+using BookService.Domain.Entities.Users.Entity;
+using BookService.Domain.Entities.Users.Enums;
+using BookService.Domain.Entities.Users.DTOs;
 
 namespace BookService.Infrastructure.Persistence.Repositories.Custom;
 
