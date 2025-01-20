@@ -1,8 +1,8 @@
-﻿using BookService.Domain.Entiies.Users.Enums;
+﻿using BookService.Domain.Entities.Users.Enums;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace BookService.Domain.Entiies.Users.Entity;
+namespace BookService.Domain.Entities.Users.Entity;
 
 public abstract class UserEntityBase
 {

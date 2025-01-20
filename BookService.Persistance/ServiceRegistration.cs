@@ -1,5 +1,6 @@
 using BookService.Infrastructure.Persistence.Contexts;
 using BookService.Infrastructure.Persistence.UnitOfWorks.Custom;
+using BookService.Persistance.UnitOfWorks.Custom;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +30,8 @@ namespace BookService.Infrastructure.Persistence
         private static void RegisterUnitOfWorks(this IServiceCollection services)
         {
             services.AddScoped<IUserUnitOfWork, UserUnitOfWork>();
+            services.AddScoped<IOrderUnitOfWork, OrderUnitOfWork>();
+            services.AddScoped<IBookUnitOfWork, BookUnitOfWork>();
         }
     }
 }

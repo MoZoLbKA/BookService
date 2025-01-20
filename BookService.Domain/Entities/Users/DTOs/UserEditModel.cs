@@ -1,6 +1,6 @@
-﻿using BookService.Domain.Entiies.Users.Entity;
+﻿using BookService.Domain.Entities.Users.Entity;
 
-namespace BookService.Domain.Entiies.Users.DTOs;
+namespace BookService.Domain.Entities.Users.DTOs;
 
 public class UserEditModel : UserEntityBase
 {

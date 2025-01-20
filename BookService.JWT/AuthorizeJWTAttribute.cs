@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Security.Claims;
-using BookService.Domain.Entiies.Users.Enums;
+using BookService.Domain.Entities.Users.Enums;
 
 namespace BookService.JwtAuth;
 

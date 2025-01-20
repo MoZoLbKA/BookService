@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BookService.Domain.Entiies.Users.Enums;
+namespace BookService.Domain.Entities.Users.Enums;
 /// <summary>
 /// Роль пользователя
 /// </summary>
