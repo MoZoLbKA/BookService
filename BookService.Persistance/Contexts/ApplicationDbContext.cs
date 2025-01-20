@@ -1,9 +1,9 @@
-using BookService.Domain.Entities.Books;
 using BookService.Domain.Entities.Users.Entity;
-using BookService.Domain.Entities.Authors;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
+using BookService.Domain.Entities.Authors.Entities;
+using BookService.Domain.Entities.Books.Entities;
 
 namespace BookService.Infrastructure.Persistence.Contexts
 {

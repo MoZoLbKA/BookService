@@ -1,4 +1,4 @@
-﻿using BookService.Domain.Entities.Authors;
+﻿using BookService.Domain.Entities.Authors.Entities;
 using BookService.Infrastructure.Persistence.Repositories.Default;
 using BookService.Infrastructure.Persistence.UnitOfWorks.Default;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +23,7 @@ namespace BookService.Infrastructure.Persistence.Repositories.Custom
         public async Task<List<AuthorEntity>> GetByBookIdAsync(int bookId)
             => await GetSet()
                 .Include(a => a.Books)
+                .ThenInclude(x=>x.Author)
                 .Where(a => a.Books.Any(b => b.Id == bookId))
                 .ToListAsync();
 

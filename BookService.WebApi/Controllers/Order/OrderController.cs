@@ -1,5 +1,8 @@
-﻿using BookService.Domain.Entities.Orders.Entity;
+﻿using BookService.Domain.Entities.Orders.DTOs;
+using BookService.Domain.Entities.Orders.Entity;
+using BookService.JwtAuth;
 using BookService.Persistance.UnitOfWorks.Custom;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -10,10 +13,12 @@ namespace OrderService.WebApi.Controllers.Order;
 public class OrderController : ControllerBase
 {
     private readonly IOrderUnitOfWork _OrderUnitOfWork;
+    private readonly IJwtUserManager _userManager;
 
-    public OrderController(IOrderUnitOfWork OrderUnitOfWork)
+    public OrderController(IOrderUnitOfWork OrderUnitOfWork, IJwtUserManager userManager)
     {
         _OrderUnitOfWork = OrderUnitOfWork;
+        _userManager = userManager;
     }
 
     [HttpGet("{id}")]
@@ -30,12 +35,15 @@ public class OrderController : ControllerBase
         return Ok(Orders);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> CreateOrder([FromBody] OrderEntity Order)
+    [HttpPost("create")]
+    [AuthorizeJWT]
+    public async Task<IActionResult> CreateOrder([FromBody] OrderCreateModel model)
     {
-        await _OrderUnitOfWork.OrderRepository.AddAsync(Order); // Используем IOrderUnitOfWork
-        await _OrderUnitOfWork.OrderRepository.SaveAsync(); // Сохраняем изменения через UnitOfWork
-        return CreatedAtAction(nameof(GetOrderById), new { id = Order.Id }, Order);
+        var order = new OrderEntity(model);
+        order.UserId = _userManager.GetUserId();
+        await _OrderUnitOfWork.OrderRepository.AddAsync(order);
+        await _OrderUnitOfWork.OrderRepository.SaveAsync();
+        return CreatedAtAction(nameof(GetOrderById), new { id = order.Id }, order);
     }
 }
 

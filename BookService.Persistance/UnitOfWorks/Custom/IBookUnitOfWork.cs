@@ -1,4 +1,4 @@
-﻿using BookService.Domain.Entities.Books;
+﻿using BookService.Domain.Entities.Books.Entities;
 using BookService.Infrastructure.Persistence.Contexts;
 using BookService.Infrastructure.Persistence.Repositories.Custom;
 using BookService.Infrastructure.Persistence.UnitOfWorks.Default;
@@ -11,23 +11,24 @@ using System.Threading.Tasks;
 
 namespace BookService.Persistance.UnitOfWorks.Custom;
 
-    public interface IBookUnitOfWork : IUnitOfWork
-    {
-        IBookRepository BookRepository { get; set; }
-
-        Task<List<BookEntity>> GetListAsync();
-        Task<BookEntity?> FindAsync(int id, bool tracking = true);
-        Task AddAsync(BookEntity model);
-        void Update(BookEntity model);
-    }
+public interface IBookUnitOfWork : IUnitOfWork
+{
+    IBookRepository BookRepository { get; set; }
+    IAuthorRepository AuthorRepository { get; set; }
+    Task<List<BookEntity>> GetListAsync();
+    Task<BookEntity?> FindAsync(int id, bool tracking = true);
+    Task AddAsync(BookEntity model);
+    void Update(BookEntity model);
+}
 
 public sealed class BookUnitOfWork : UnitOfWork, IBookUnitOfWork
 {
     public IBookRepository BookRepository { get; set; }
-
+    public IAuthorRepository AuthorRepository { get; set; }
     public BookUnitOfWork(ApplicationDbContext database, ILoggerFactory factory) : base(database, factory)
     {
         BookRepository = new BookRepository(this);
+        AuthorRepository = new AuthorRepository(this);
     }
 
     public async Task<List<BookEntity>> GetListAsync()
