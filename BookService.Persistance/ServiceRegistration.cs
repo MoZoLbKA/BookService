@@ -32,6 +32,7 @@ namespace BookService.Infrastructure.Persistence
             services.AddScoped<IUserUnitOfWork, UserUnitOfWork>();
             services.AddScoped<IOrderUnitOfWork, OrderUnitOfWork>();
             services.AddScoped<IBookUnitOfWork, BookUnitOfWork>();
+            services.AddScoped<IAuthorUnitOfWork, AuthorUnitOfWork>();
         }
     }
 }

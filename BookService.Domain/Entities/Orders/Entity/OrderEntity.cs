@@ -1,10 +1,10 @@
-﻿using BookService.Domain.Entities.Orders.Enums;
+﻿using BookService.Domain.Entities.Orders.DTOs;
 using BookService.Domain.Entities.Users.Entity;
 using System.ComponentModel.DataAnnotations;
 
 namespace BookService.Domain.Entities.Orders.Entity;
 
-public class OrderEntity
+public class OrderEntity : OrderEntityBase
 {
     [Key]
     public int Id { get; set; }
@@ -15,17 +15,12 @@ public class OrderEntity
 
     [Required]
     public ICollection<BookOrderEntity> Books { get; set; } = new List<BookOrderEntity>();
-
-    [Required]
-    public OrderStatus Status { get; set; }
-
-    [Required]
-    public decimal TotalPrice { get; set; }
-
-    [Required]
-    [MaxLength(255)]
-    public string? DeliveryAddress { get; set; }
-
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-    public DateTime? UpdatedAt { get; set; }
+    public OrderEntity()
+    {
+        
+    }
+    public OrderEntity(OrderCreateModel model) : base(model)
+    {
+        Status = Enums.OrderStatus.InProgress;
+    }
 }

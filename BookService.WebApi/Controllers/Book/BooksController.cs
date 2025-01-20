@@ -1,6 +1,12 @@
 ﻿using BookService.Domain.Entities.Books;
+using BookService.Domain.Entities.Books.DTOs;
+using BookService.Domain.Entities.Books.Entities;
+using BookService.Domain.Entities.Users.Enums;
 using BookService.Infrastructure.Persistence.UnitOfWorks.Custom;  // Для использования IBookUnitOfWork
+using BookService.JwtAuth;
 using BookService.Persistance.UnitOfWorks.Custom;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,10 +18,12 @@ namespace BookService.WebApi.Controllers.Book
     public class BookController : ControllerBase
     {
         private readonly IBookUnitOfWork _bookUnitOfWork;
+        private readonly IJwtUserManager _userManager;
 
-        public BookController(IBookUnitOfWork bookUnitOfWork)
+        public BookController(IBookUnitOfWork bookUnitOfWork, IJwtUserManager userManager)
         {
             _bookUnitOfWork = bookUnitOfWork;
+            _userManager = userManager;
         }
 
         [HttpGet("{id}")]
@@ -32,11 +40,19 @@ namespace BookService.WebApi.Controllers.Book
             return Ok(books);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateBook([FromBody] BookEntity book)
+        [HttpPost("create")]
+        [AuthorizeJWT(roles: UserRole.Admin)]
+        public async Task<IActionResult> CreateBook([FromBody] BookCreateModel model)
         {
-            await _bookUnitOfWork.BookRepository.AddAsync(book); // Используем IBookUnitOfWork
-            await _bookUnitOfWork.SaveAsync(); // Сохраняем изменения через UnitOfWork
+            var book = new BookEntity(model);
+            var author = await _bookUnitOfWork.AuthorRepository.FindAsync(book.AuthorId);
+            if(author == null)
+            {
+                return BadRequest("Такого автора не существует");
+            }
+            book.PublisherId = _userManager.GetUserId();
+            await _bookUnitOfWork.BookRepository.AddAsync(book);
+            await _bookUnitOfWork.SaveAsync();
             return CreatedAtAction(nameof(GetBookById), new { id = book.Id }, book);
         }
     }

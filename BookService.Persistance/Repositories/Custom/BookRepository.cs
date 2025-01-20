@@ -1,4 +1,4 @@
-﻿using BookService.Domain.Entities.Books;
+﻿using BookService.Domain.Entities.Books.Entities;
 using BookService.Infrastructure.Persistence.Repositories.Default;
 using BookService.Infrastructure.Persistence.UnitOfWorks.Default;
 using Microsoft.EntityFrameworkCore;

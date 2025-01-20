@@ -1,4 +1,4 @@
-﻿using BookService.Domain.Entities.Authors;
+﻿using BookService.Domain.Entities.Authors.Entities;
 using BookService.Infrastructure.Persistence.Contexts;
 using BookService.Infrastructure.Persistence.Repositories.Custom;
 using BookService.Infrastructure.Persistence.UnitOfWorks.Default;
@@ -11,16 +11,17 @@ using System.Threading.Tasks;
 
 namespace BookService.Persistance.UnitOfWorks.Custom;
 
-    public interface IAuthorUnitOfWork : IUnitOfWork
-    {
-        IAuthorRepository AuthorRepository { get; set; }
+public interface IAuthorUnitOfWork : IUnitOfWork
+{
+    IAuthorRepository AuthorRepository { get; set; }
 
-        Task<List<AuthorEntity>> GetListAsync();
-        Task<AuthorEntity?> FindAsync(int id, bool tracking = true);
-        Task<AuthorEntity?> FindByNameAsync(string name, bool tracking = true);
-        Task AddAsync(AuthorEntity author);
-        void Update(AuthorEntity author);
-    }
+    Task<List<AuthorEntity>> GetListAsync();
+    Task<AuthorEntity?> FindAsync(int id, bool tracking = true);
+    Task<AuthorEntity?> FindByNameAsync(string name, bool tracking = true);
+    Task AddAsync(AuthorEntity author);
+    void Update(AuthorEntity author);
+    void Delete(AuthorEntity author);
+}
 
 public sealed class AuthorUnitOfWork : UnitOfWork, IAuthorUnitOfWork
 {
@@ -76,6 +77,10 @@ public sealed class AuthorUnitOfWork : UnitOfWork, IAuthorUnitOfWork
     public void Update(AuthorEntity author)
     {
         AuthorRepository.Update(author);
+    }
+    public void Delete(AuthorEntity author)
+    {
+        AuthorRepository.Delete(author);
     }
 }
 
